@@ -1,0 +1,42 @@
+
+Usage: serial [-P | -port] <Serial Port> [-B | -baud] <Baudrate> [-S | -send] <"Commands"> [-R | -read] [-D | -delay] <Delay (ms)>
+
+Basic arguments:
+-P or -port                Serial Port name in system (COM1, COM2 etc) Default: get current COM-port
+-B or -baudrate            Select baudrate for serial port (4800, 9600, 19200 etc) Default: 115200
+-S or -send                Send commands via serial port using "". Default send command "v"
+
+Arguments to read:
+-R or -read                Return result from Serial port (Optional)
+-D or -delay               Delay to return the result in ms (for -R or -read)
+
+Informational arguments:
+-G or -get                 Get current COM ports
+-H or -help                Get current help
+-V or -version             Get the current version of the program
+-----------------------------------------------------------------------------------------------------------------------
+Usage examples (u-boot):
+
+[Get Serial port name:]
+
+serial -G
+
+[Return result:]
+-----------------------------------------------------------------------------------------------------------------------
+COM9
+-----------------------------------------------------------------------------------------------------------------------
+[Send in port command:]
+
+serial -P COM9 -B 115200 -S "nand info" -R -D 300
+
+[Return result:]
+-----------------------------------------------------------------------------------------------------------------------
+nand info
+
+Device 0: nand0, sector size 128 KiB
+  Page size      2048 b
+  OOB size         64 b
+  Erase size   131072 b
+U-Boot#
+-----------------------------------------------------------------------------------------------------------------------
+
