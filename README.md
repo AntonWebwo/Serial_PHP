@@ -8,37 +8,47 @@ Serial Port CLI for PHP
 
 Пример интеграции в PHP работу програмы:
 
-<?php
+<pre>
+<div class="wrap">
 $get_serial = shell_exec('serial -G');//Отправляем запрос текущего порта
 echo "Текущий порт: ".$get_serial;//Возвращаем результат
-?>
+</div>
+</pre>
 
 Результат:
 
+<pre>
 Текущий порт: COM9
+</pre>
 
 Ещё пример. Получаем версию u-boot:
 
-<?php
+<pre>
+<div class="wrap">
 $command = "v";//Команда для вывода версии
 $get_version = shell_exec('serial -P COM9 -S '.$command.' -R -D 100');//Отправляем запрос в COM порт
 $version = str_replace($command, "", $get_version);//Убираем из результата принятую команду
 $version = str_replace("U-Boot#", "", $version);//Убираем из результата приглашение "U-Boot#"
 $version = str_replace("U-Boot", "", $version);//Убираем из результата "U-Boot" в начале
 echo "Версия U-Boot: ".$version;//Возвращаем результат
-?>
+</div>
+</pre>
 
 Результат:
 
+<pre>
 Версия U-Boot: 2013.04-dirty (Jan 04 2015 - 17:08:05) arm-angstrom-linux-gnueabi-gcc (Linaro GCC 4.7-2013.07) 4.7.4 20130626 (prerelease) GNU ld (GNU Binutils) 2.23.1.20121113
+</pre>
 
 Все аргументы програмы можно получить через -help или -H
 
-<?php
+<pre>
+<div class="wrap">
 $get_help = shell_exec('serial -H');//Получить справку о програме
 $get_help = str_replace("\n", "<br>", $get_help);//Заменяем переносы строк для вывода в браузере
 echo $get_help;//Возвращаем результат
-?>
+</div>
+</pre>
 
 Короткое описание аргументов:
 
